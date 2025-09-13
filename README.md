@@ -134,7 +134,174 @@ services:
         connection_string: "postgresql://user:pass@prod-db.company.com/worker_prod"
 ```
 
-### 3. 上下文驱动的模板渲染
+### 3. 数组项目动态添加 (`$additional_items`)
+
+数组项目动态添加功能允许在数组的特定位置插入来自外部文件或模板的多个项目，支持与引用功能结合使用，实现复杂的配置组合和动态列表生成。
+
+**基本数组项目添加示例：**
+
+输入文件 `test_basic.yml`：
+```yaml
+filters:
+  - ignore: ["*.log"]
+  - $additional_items:
+    - exclude: ["*.tmp"]
+    - include: ["*.yaml"]
+  - filter_in: ["**/*.yml"]
+```
+
+处理结果：
+```yaml
+filters:
+  - ignore: ["*.log"]
+  - exclude: ["*.tmp"]
+  - include: ["*.yaml"]
+  - filter_in: ["**/*.yml"]
+```
+
+**结合文件引用的示例：**
+
+输入文件 `security_middleware.yml`：
+```yaml
+- name: "security-headers"
+  type: "security"
+- name: "rate-limiter"
+  type: "security"
+```
+
+输入文件 `utility_middleware.yml`：
+```yaml
+- name: "body-parser"
+  type: "parsing"
+- name: "compression"
+  type: "optimization"
+```
+
+输入文件 `middleware_config.yml`：
+```yaml
+middleware:
+  - name: "cors"
+    order: 1
+  - $additional_items:
+    - $ref: './security_middleware.yml'
+  - $additional_items:
+    - $ref: './utility_middleware.yml'
+  - name: "logger"
+    order: 99
+```
+
+处理结果：
+```yaml
+middleware:
+  - name: "cors"
+    order: 1
+  - name: "security-headers"
+    type: "security"
+  - name: "rate-limiter"
+    type: "security"
+  - name: "body-parser"
+    type: "parsing"
+  - name: "compression"
+    type: "optimization"
+  - name: "logger"
+    order: 99
+```
+
+**结合参数化引用的复杂示例：**
+
+输入文件 `service-template.yml`（EJS模板文件）：
+```yaml
+- name: "<%= service_name %>"
+  port: <%= service_port %>
+  environment: "production"
+```
+
+输入文件 `production_services.yml`：
+```yaml
+services:
+  - name: "gateway"
+    port: 80
+  - $additional_items:
+    - $p_ref:
+        $ref: './service-template.yml'
+        params:
+          service_name: "auth-service"
+          service_port: 8081
+    - $p_ref:
+        $ref: './service-template.yml'
+        params:
+          service_name: "data-service"
+          service_port: 8082
+  - name: "monitor"
+    port: 9090
+```
+
+处理结果：
+```yaml
+services:
+  - name: "gateway"
+    port: 80
+  - name: "auth-service"
+    port: 8081
+    environment: "production"
+  - name: "data-service"
+    port: 8082
+    environment: "production"
+  - name: "monitor"
+    port: 9090
+```
+
+**结合JSON指针的高级示例：**
+
+输入文件 `services_config.yml`：
+```yaml
+microservices:
+  api_services:
+    - name: "auth-api"
+      version: "v2.1"
+      port: 8080
+    - name: "user-api"
+      version: "v2.1"
+      port: 8081
+  background_services:
+    - name: "notification-service"
+      version: "v1.5"
+      port: 8082
+```
+
+输入文件 `application_config.yml`：
+```yaml
+application:
+  components:
+    - name: "frontend"
+      type: "web"
+    - $additional_items:
+      - $ref: './services_config.yml#/microservices/api_services'
+      - $ref: './services_config.yml#/microservices/background_services'
+    - name: "database"
+      type: "storage"
+```
+
+处理结果：
+```yaml
+application:
+  components:
+    - name: "frontend"
+      type: "web"
+    - name: "auth-api"
+      version: "v2.1"
+      port: 8080
+    - name: "user-api"
+      version: "v2.1"
+      port: 8081
+    - name: "notification-service"
+      version: "v1.5"
+      port: 8082
+    - name: "database"
+      type: "storage"
+```
+
+### 4. 上下文驱动的模板渲染
 
 上下文功能允许在加载YAML文件时传递全局参数，这些参数可以在整个文件处理过程中使用。
 
@@ -186,7 +353,7 @@ logging:
   output: "/var/log/app.log"
 ```
 
-### 4. 引用与属性合并
+### 5. 引用与属性合并
 
 该功能允许在引用外部内容的同时添加或覆盖特定属性，实现灵活的配置组合。
 
@@ -228,7 +395,7 @@ production:
     private_key: "/etc/ssl/private.key"
 ```
 
-### 5. 数组扁平化处理 (`$flaten`)
+### 6. 数组扁平化处理 (`$flaten`)
 
 数组扁平化功能可以将多个数组或引用结果合并为单一扁平数组，适用于配置列表的动态组合。
 
@@ -275,7 +442,7 @@ routes:
     component: "APIEndpoint"
 ```
 
-### 6. 复杂模板函数处理
+### 7. 复杂模板函数处理
 
 该功能支持在EJS模板中定义和使用复杂的数据转换函数，实现高级的数据处理逻辑。
 
@@ -373,6 +540,15 @@ services:
       timeout: "10s"
       retries: 3
 ```
+
+## 功能特性对比
+
+| 功能 | 用途 | 适用场景 | 支持嵌套 | 支持参数 |
+|------|------|----------|----------|----------|
+| `$ref` | 引用外部文件内容 | 配置模块化 | ✅ | ❌ |
+| `$p_ref` | 参数化引用 | 模板化配置 | ✅ | ✅ |
+| `$additional_items` | 动态添加数组项 | 列表组合 | ✅ | 与引用配合 |
+| `$flaten` | 数组扁平化 | 多数组合并 | ✅ | ❌ |
 
 ## API 接口规范
 
