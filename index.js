@@ -79,7 +79,7 @@ module.exports = async function loadYamlFile(filepath, workdir = path.dirname(fi
         
         if (typeof obj === 'object' && obj !== null) {
             if ('$ref' in obj) {
-                const refPath = path.join(workdir, obj.$ref.split('#')[0]);
+                const refPath = path.resolve(workdir, obj.$ref.split('#')[0]);
                 const pointer = obj.$ref.split('#')[1];
 
                 // 从 context 中取出以 obj.$ref 的属性值作为属性名的值作为新的 context，向下传递
@@ -102,7 +102,7 @@ module.exports = async function loadYamlFile(filepath, workdir = path.dirname(fi
                     return value;
                 }
             } else if ('$p_ref' in obj) {
-                const refPath = path.join(workdir, obj.$p_ref.$ref.split('#')[0]);
+                const refPath = path.resolve(workdir, obj.$p_ref.$ref.split('#')[0]);
                 const pointer = obj.$p_ref.$ref.split('#')[1];
 
                 // 从 context 中取出 $p_ref 中 params 属性的值，作为模板渲染时的 context
