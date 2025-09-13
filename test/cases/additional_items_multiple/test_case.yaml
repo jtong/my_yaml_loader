@@ -1,0 +1,18 @@
+desc: "Test multiple $additional_items in same array"
+given:
+  filepath: "test_multiple.yml"
+then:
+  expectedResult:
+    middleware:
+      - name: "cors"
+        order: 1
+      - name: "security-headers"
+        type: "security"
+      - name: "rate-limiter"
+        type: "security"
+      - name: "body-parser"
+        type: "parsing"
+      - name: "compression"
+        type: "optimization"
+      - name: "logger"
+        order: 99

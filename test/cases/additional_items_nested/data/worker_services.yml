@@ -1,0 +1,11 @@
+- $additional_items:
+  - $p_ref:
+      $ref: './worker_template.yml'
+      params:
+        worker_type: "queue"
+        worker_replicas: 5
+  - $p_ref:
+      $ref: './worker_template.yml'
+      params:
+        worker_type: "batch"
+        worker_replicas: 2

@@ -1,0 +1,16 @@
+desc: "Test $additional_items with $p_ref and parameters"
+given:
+  filepath: "test_with_p_ref.yml"
+then:
+  expectedResult:
+    services:
+      - name: "gateway"
+        port: 80
+      - name: "auth-service"
+        port: 8081
+        environment: "production"
+      - name: "data-service" 
+        port: 8082
+        environment: "production"
+      - name: "monitor"
+        port: 9090

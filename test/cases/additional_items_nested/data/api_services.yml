@@ -1,0 +1,6 @@
+- name: "api-primary"
+  image: "myapp:v1.0"
+  replicas: 3
+- name: "api-secondary"
+  image: "myapp:v1.0" 
+  replicas: 2

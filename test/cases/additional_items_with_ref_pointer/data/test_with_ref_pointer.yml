@@ -1,0 +1,9 @@
+application:
+  components:
+    - name: "frontend"
+      type: "web"
+    - $additional_items:
+      - $ref: './services_config.yml#/microservices/api_services'
+      - $ref: './services_config.yml#/microservices/background_services'
+    - name: "database"
+      type: "storage"

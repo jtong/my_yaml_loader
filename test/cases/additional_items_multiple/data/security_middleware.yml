@@ -1,0 +1,4 @@
+- name: "security-headers"
+  type: "security"
+- name: "rate-limiter"
+  type: "security"

@@ -1,0 +1,4 @@
+- name: "imported_rule_1"
+  action: "allow"
+- name: "imported_rule_2"
+  action: "deny"

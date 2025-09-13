@@ -1,0 +1,3 @@
+- name: "<%= service_name %>"
+  port: <%= service_port %>
+  environment: "production"

@@ -1,0 +1,9 @@
+deployment:
+  containers:
+    - name: "web"
+      image: "nginx:latest"
+    - $additional_items:
+      - $ref: './api_services.yml'
+      - $ref: './worker_services.yml'
+    - name: "cache"
+      image: "redis:alpine"

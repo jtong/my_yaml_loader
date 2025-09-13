@@ -1,0 +1,10 @@
+desc: "Test basic $additional_items functionality"
+given:
+  filepath: "test_basic.yml"
+then:
+  expectedResult:
+    filters:
+      - ignore: ["*.log"]
+      - exclude: ["*.tmp"] 
+      - include: ["*.yaml"]
+      - filter_in: ["**/*.yml"]

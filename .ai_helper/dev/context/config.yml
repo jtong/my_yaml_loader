@@ -17,7 +17,17 @@ project:
 
 input:
   instruction: |
-    我希望 给我写个文档，详细讲讲支持哪些功能。
+    我希望 加入一个新的功能，支持$additional_items，该功能加入在数组中。类似：
+    ```
+    filters:
+      - ignore: ["*.log"]
+      - $additional_items: 
+        - $ref: 'somefiles.yml#filters_to_add'
+      - filter_in: ["**/*.yml"]
+    ```
+    它会把引入的数组加入到当前数组中，替代自己的位置。其功能类似$flatten，子元素支持$ref和$p_ref，但其返回的一定是一个数组，这个数组一定会被展开，在自己的位置逐个插入，并删除掉自己。
+
+    我希望先构造测试，再编写实现
 output:     
   prompt:
     path: .ai_helper/prompt_builder/output/working

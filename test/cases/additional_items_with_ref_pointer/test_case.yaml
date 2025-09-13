@@ -1,0 +1,20 @@
+desc: "Test $additional_items with $ref using JSON pointer"
+given:
+  filepath: "test_with_ref_pointer.yml"
+then:
+  expectedResult:
+    application:
+      components:
+        - name: "frontend"
+          type: "web"
+        - name: "auth-api"
+          version: "v2.1"
+          port: 8080
+        - name: "user-api"
+          version: "v2.1"
+          port: 8081
+        - name: "notification-service"
+          version: "v1.5"
+          port: 8082
+        - name: "database"
+          type: "storage"

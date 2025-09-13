@@ -44,9 +44,39 @@ module.exports = async function loadYamlFile(filepath, workdir = path.dirname(fi
     const data = yaml.load(renderedContent);
 
     const processRef = async (obj, context) => {
-        if (Array.isArray(obj)) { // 如果是数组，则对每个元素递归调用processRef
-            return Promise.all(obj.map(async item => await processRef(item, context)));
+        if (Array.isArray(obj)) {
+            // 处理数组中的 $additional_items
+            const result = [];
+            
+            for (let i = 0; i < obj.length; i++) {
+                const item = obj[i];
+                
+                if (typeof item === 'object' && item !== null && '$additional_items' in item) {
+                    // 处理 $additional_items
+                    const additionalItems = item.$additional_items;
+                    const processedItems = [];
+                    
+                    for (const additionalItem of additionalItems) {
+                        const processedItem = await processRef(additionalItem, context);
+                        if (Array.isArray(processedItem)) {
+                            processedItems.push(...processedItem);
+                        } else {
+                            processedItems.push(processedItem);
+                        }
+                    }
+                    
+                    // 将处理后的项目添加到结果中（展开数组）
+                    result.push(...processedItems);
+                } else {
+                    // 处理普通项目
+                    const processedItem = await processRef(item, context);
+                    result.push(processedItem);
+                }
+            }
+            
+            return result;
         }
+        
         if (typeof obj === 'object' && obj !== null) {
             if ('$ref' in obj) {
                 const refPath = path.join(workdir, obj.$ref.split('#')[0]);

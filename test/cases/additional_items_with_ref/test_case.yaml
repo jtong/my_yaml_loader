@@ -1,0 +1,15 @@
+desc: "Test $additional_items with $ref functionality"
+given:
+  filepath: "test_with_ref.yml"
+then:
+  expectedResult:
+    configuration:
+      rules:
+        - name: "base_rule"
+          priority: 1
+        - name: "imported_rule_1" 
+          action: "allow"
+        - name: "imported_rule_2"
+          action: "deny"
+        - name: "final_rule"
+          priority: 99

@@ -1,0 +1,9 @@
+middleware:
+  - name: "cors"
+    order: 1
+  - $additional_items:
+    - $ref: './security_middleware.yml'
+  - $additional_items:
+    - $ref: './utility_middleware.yml'
+  - name: "logger"
+    order: 99

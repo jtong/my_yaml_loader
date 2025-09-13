@@ -1,0 +1,16 @@
+services:
+  - name: "gateway"
+    port: 80
+  - $additional_items:
+    - $p_ref:
+        $ref: './service_template.yml'
+        params:
+          service_name: "auth-service"
+          service_port: 8081
+    - $p_ref:
+        $ref: './service_template.yml'
+        params:
+          service_name: "data-service"
+          service_port: 8082
+  - name: "monitor"
+    port: 9090

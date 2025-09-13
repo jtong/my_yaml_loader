@@ -1,0 +1,15 @@
+microservices:
+  api_services:
+    - name: "auth-api"
+      version: "v2.1"
+      port: 8080
+    - name: "user-api"
+      version: "v2.1"
+      port: 8081
+  background_services:
+    - name: "notification-service"
+      version: "v1.5"
+      port: 8082
+  legacy_services:
+    - name: "old-system"
+      deprecated: true

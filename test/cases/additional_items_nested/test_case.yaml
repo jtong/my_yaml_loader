@@ -1,0 +1,23 @@
+desc: "Test nested $additional_items with complex references"
+given:
+  filepath: "test_nested.yml"
+then:
+  expectedResult:
+    deployment:
+      containers:
+        - name: "web"
+          image: "nginx:latest"
+        - name: "api-primary"
+          image: "myapp:v1.0"
+          replicas: 3
+        - name: "api-secondary" 
+          image: "myapp:v1.0"
+          replicas: 2
+        - name: "worker-queue"
+          image: "worker:v2.1"
+          replicas: 5
+        - name: "worker-batch"
+          image: "worker:v2.1"
+          replicas: 2
+        - name: "cache"
+          image: "redis:alpine"

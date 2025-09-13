@@ -1,0 +1,6 @@
+filters:
+  - ignore: ["*.log"]
+  - $additional_items:
+    - exclude: ["*.tmp"]
+    - include: ["*.yaml"]
+  - filter_in: ["**/*.yml"]

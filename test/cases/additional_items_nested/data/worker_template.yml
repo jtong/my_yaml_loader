@@ -1,0 +1,3 @@
+- name: "worker-<%= worker_type %>"
+  image: "worker:v2.1"
+  replicas: <%= worker_replicas %>
