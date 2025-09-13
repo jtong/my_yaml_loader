@@ -1,0 +1,7 @@
+desc: "Test without context, but ref file has ref property"
+given:
+  filepath: "test3.yml"
+then:
+  expectedResult:
+    name: 'Alice'
+    city: 'Beijing'

@@ -1,0 +1,6 @@
+- name: Alice
+  age: 20
+- name: Bob
+  age: 25
+- $p_ref:
+    $ref: "./test18_included_yaml.yml"

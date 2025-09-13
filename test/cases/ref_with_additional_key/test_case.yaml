@@ -1,0 +1,14 @@
+desc: "Test with refkey and key"
+given:
+  filepath: "test9.yml"
+then:
+  expectedResult:
+    person:
+      name: 'Alice'
+      address: 
+        city: 'Beijing'
+        country: 'China'
+      contact: 
+        value: 'alice@example.com'
+        type: 'work'
+        name: 'Bob'

@@ -1,0 +1,11 @@
+people:
+  - name: "Alice"
+    age: 25
+    hobbies:
+      - reading
+      - cooking
+  - name: "Bob"
+    age: 35
+    hobbies:
+      - cycling
+      - camping

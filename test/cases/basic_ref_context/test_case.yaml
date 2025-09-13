@@ -1,0 +1,15 @@
+desc: "Test with context, and ref file has ref property"
+given:
+  filepath: "test2.yml"
+  context:
+    './test1.yml':
+      user:
+        name: 'Bob'
+        city: 'Beijing'
+        country: 'China'
+then:
+  expectedResult:
+    name: 'Bob'
+    address: 
+      city: 'Beijing'
+      country: 'China'

@@ -1,0 +1,14 @@
+person:
+  name: Alice
+  address:
+    city: Beijing
+    country: China
+  contact:
+    $p_ref: 
+      $ref: './test1.yml'
+      params:
+        user: 
+          name: "Bob"
+          city: "Beijing"
+          country: "China"
+    hello: "world"

@@ -1,0 +1,16 @@
+desc: "Test with $p_ref params contains arrays"
+given:
+  filepath: "test16.yml"
+then:
+  expectedResult:
+    person:
+      name: 'Alice'
+      address: 
+        city: 'Beijing'
+        country: 'China'
+      contact:
+        hello: 'world'
+        hellos:
+          - "world"
+          - "earth"
+        other_key: 'other_value'

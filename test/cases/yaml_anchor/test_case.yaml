@@ -1,0 +1,15 @@
+desc: "Test with ancher"
+given:
+  filepath: "test11.yml"
+then:
+  expectedResult:
+    other:
+      name:
+        name: "Alice"
+    parent:
+      child1:
+        name: "Alice"
+      child2:
+        name: "Bob"
+      child3:
+        name: "Charlie"

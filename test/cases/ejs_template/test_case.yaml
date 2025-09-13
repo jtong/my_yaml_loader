@@ -1,0 +1,15 @@
+desc: "Test with ejs template"
+given:
+  filepath: "test8.yml"
+  context:
+    user:
+      name: 'Bob'
+      address:
+        city: 'Beijing'
+        country: 'China'
+then:
+  expectedResult:
+    name: 'Bob'
+    address: 
+      city: 'Beijing'
+      country: 'China'

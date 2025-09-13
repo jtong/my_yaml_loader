@@ -1,0 +1,16 @@
+desc: "Test with $p_ref and ejs"
+given:
+  filepath: "test12.yml"
+then:
+  expectedResult:
+    person:
+      name: 'Alice'
+      address: 
+        city: 'Beijing'
+        country: 'China'
+      contact:
+        name: 'Bob'
+        city: 'Beijing'
+        country: 'China'
+        other_key: "other_value"
+        hello: 'world'

@@ -1,0 +1,16 @@
+desc: "Test with $p_ref and parameters"
+given:
+  filepath: "test10.yml"
+then:
+  expectedResult:
+    person:
+      name: 'Alice'
+      address: 
+        city: 'Beijing'
+        country: 'China'
+      contact:
+        name: 'Bob'
+        address: 
+          city: 'Beijing'
+          country: 'China'
+        hello: 'world'

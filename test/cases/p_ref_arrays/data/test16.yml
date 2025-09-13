@@ -1,0 +1,14 @@
+person:
+  name: Alice
+  address:
+    city: Beijing
+    country: China
+  contact:
+    $p_ref: 
+      $ref: './test16_included_ejs.yml#contact'
+      params: 
+        user:
+          hellos:
+            - world
+            - earth
+    hello: "world"

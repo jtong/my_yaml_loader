@@ -1,0 +1,9 @@
+parent:
+  child1: &anchor1
+    name: Alice
+  child2:
+    name: Bob
+  child3:
+    name: Charlie
+other:
+  name: *anchor1

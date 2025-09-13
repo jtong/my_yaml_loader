@@ -1,0 +1,10 @@
+a:
+  $flaten:
+    - $p_ref:
+        $ref: "./test19_ref.yml"
+    - $p_ref:
+        $ref: "./test19_ref.yml"
+b:
+  $flaten:
+    - $p_ref:
+        $ref: "./test19_ref.yml"

@@ -1,0 +1,17 @@
+desc: "Test with $p_ref and ejs and deep obj"
+given:
+  filepath: "test13.yml"
+then:
+  expectedResult:
+    person:
+      name: 'Alice'
+      address: 
+        city: 'Beijing'
+        country: 'China'
+      contact:
+        name:
+          firstName: 'Bob'
+          lastName: 'Tom'
+        city: 'Beijing'
+        country: 'China'
+        hello: 'world'

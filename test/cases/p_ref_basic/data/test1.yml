@@ -1,0 +1,4 @@
+name: <%= user.name %>
+address:
+  city: <%= user.city %>
+  country: <%= user.country %>

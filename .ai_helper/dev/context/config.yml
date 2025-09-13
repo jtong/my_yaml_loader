@@ -1,0 +1,24 @@
+project:
+  base_path: ./
+  filters:
+    - ignore:
+      - ".idea"
+      - .git
+      - node_modules
+      - ai_helper
+      - .ai_helper
+      - "spike"
+      - config.yml
+      - doc
+      - "**/*.png"
+      - "**/.DS_Store"
+      - "**/LICENSE.txt"
+      - "**/package-lock.json"
+
+input:
+  instruction: |
+    我希望 给我写个文档，详细讲讲支持哪些功能。
+output:     
+  prompt:
+    path: .ai_helper/prompt_builder/output/working
+    backup_path: .ai_helper/prompt_builder/output/backup

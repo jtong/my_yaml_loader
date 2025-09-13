@@ -1,0 +1,7 @@
+desc: "Test without context, and ref file has no ref property"
+given:
+  filepath: "test6.yml"
+then:
+  expectedResult:
+    name: 'Tom'
+    age: 18

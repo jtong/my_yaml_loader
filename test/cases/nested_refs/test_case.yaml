@@ -1,0 +1,19 @@
+desc: "Test with nested $p_ref and $ref in arrays"
+given:
+  filepath: "test18.yml"
+then:
+  expectedResult:
+    - name: "Alice"
+      age: 20
+    - name: "Bob"
+      age: 25
+    - - name: "Cindy"
+        age: 30
+      - - name: "Eric"
+          age: 40
+        - name: "Fiona"
+          age: 45
+      - - name: "Eric"
+          age: 40
+        - name: "Fiona"
+          age: 45

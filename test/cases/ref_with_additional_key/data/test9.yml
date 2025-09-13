@@ -1,0 +1,8 @@
+person:
+  name: Alice
+  address:
+    city: Beijing
+    country: China
+  contact:
+    $ref: './contact.yaml#email'
+    name: "Bob"

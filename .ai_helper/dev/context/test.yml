@@ -1,0 +1,66 @@
+project:
+  base_path: ./
+  filters:
+    - ignore:
+      - ".idea"
+      - .git
+      - node_modules
+      - ai_helper
+      - .ai_helper
+      - "spike"
+      - config.yml
+      - doc
+      - "**/*.png"
+      - "**/.DS_Store"
+      - "**/LICENSE.txt"
+      - "**/package-lock.json"
+read_only_references:
+  - folder:
+      base_path: "/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/prompt-context-builder/test"
+      desc: "参考测试项目"
+      filters:
+        - filter_in:
+            - "index.js"
+input:
+  instruction: |
+    我希望 仿照 参考测试项目，改写现在的测试，使用相同的DSL。
+
+    但目前执行npm test 报错：
+
+
+    Exception during run: TypeError: Test argument "title" should be a string. Received type "undefined"
+        at createInvalidArgumentTypeError (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/errors.js:268:13)
+        at new Test (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/test.js:23:11)
+        at context.it.context.specify (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/interfaces/bdd.js:87:18)
+        at exports.it (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/mocha.js:126:53)
+        at /Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/test/index.js:37:9
+        at Array.forEach (<anonymous>)
+        at Suite.<anonymous> (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/test/index.js:36:15)
+        at Object.create (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/interfaces/common.js:148:19)
+        at context.describe.context.context (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/interfaces/bdd.js:42:27)
+        at exports.describe (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/mocha.js:111:60)
+        at Object.<anonymous> (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/test/index.js:33:1)
+        at Module._compile (node:internal/modules/cjs/loader:1730:14)
+        at Object..js (node:internal/modules/cjs/loader:1895:10)
+        at Module.load (node:internal/modules/cjs/loader:1465:32)
+        at Function._load (node:internal/modules/cjs/loader:1282:12)
+        at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+        at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+        at cjsLoader (node:internal/modules/esm/translators:266:5)
+        at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:200:7)
+        at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+        at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+        at async formattedImport (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/nodejs/esm-utils.js:9:14)
+        at async exports.requireOrImport (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/nodejs/esm-utils.js:42:28)
+        at async exports.loadFilesAsync (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/nodejs/esm-utils.js:100:20)
+        at async singleRun (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/cli/run-helpers.js:162:3)
+        at async exports.handler (/Users/jtong/develop/education/homework-lab/java_microservice/prompt-builder-projects/prompt_builder_family/yaml-loader/node_modules/mocha/lib/cli/run.js:375:5) {
+      code: 'ERR_MOCHA_INVALID_ARG_TYPE',
+      argument: 'title',
+      expected: 'string',
+      actual: 'string'
+
+output:     
+  prompt:
+    path: .ai_helper/prompt_builder/output/working
+    backup_path: .ai_helper/prompt_builder/output/backup

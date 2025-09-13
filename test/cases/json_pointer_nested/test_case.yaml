@@ -1,0 +1,13 @@
+desc: "Test with json pointer and ref property"
+given:
+  filepath: "test7.yml"
+then:
+  expectedResult:
+    person:
+      name: 'Alice'
+      address: 
+        city: 'Beijing'
+        country: 'China'
+      contact: 
+        value: 'alice@example.com'
+        type: 'work'

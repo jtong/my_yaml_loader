@@ -1,0 +1,13 @@
+desc: "Test with $flaten flaten array"
+given:
+  filepath: "test19.yml"
+then:
+  expectedResult:
+    a:
+      - name: "Bob"
+      - name: "Alice"
+      - name: "Bob"
+      - name: "Alice"
+    b:
+      - name: "Bob"
+      - name: "Alice"

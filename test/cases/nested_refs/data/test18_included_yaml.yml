@@ -1,0 +1,5 @@
+- name: Cindy
+  age: 30
+- $p_ref:
+      $ref: "./test18_included_yaml_2.yml"
+- $ref: "./test18_included_yaml_2.yml"

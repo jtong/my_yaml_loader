@@ -1,0 +1,30 @@
+person:
+  name: Alice
+  address:
+    city: Beijing
+    country: China
+  contact:
+    - $p_ref: 
+        $ref: './test15_included_ejs.yml#contacts/contacta/contacta_1'
+        params: 
+          user: 
+            name: 
+              firstName: "Bob"
+              lastName: "Tom"
+            city: >
+              "Beijing"
+            country: 
+              "China"
+      hello: "world"
+    - $p_ref: 
+        $ref: './test15_included_ejs.yml#contacts/contacta/contacta_2'
+        params: 
+          user: 
+            name: 
+              firstName: "Bob"
+              lastName: "Tom"
+            city: >
+              "Beijing"
+            country: 
+              "China"
+      hello: "world"

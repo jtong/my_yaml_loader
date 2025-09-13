@@ -1,0 +1,22 @@
+<% function transform(obj, indent = '') { %>
+<% if (typeof obj !== 'object' || obj === null) { %>
+<%= indent %><%- `${obj}` %>
+<% } else { %>
+<% for (const [key, value] of Object.entries(obj)) { %>
+<% if (Array.isArray(value)) { %>
+<%= indent %><%= key %>:
+<%- value.map(v => `${indent}  - ${v}`).join('\n') %>
+<% } else if (typeof value === 'object') { %>
+<%= indent %><%= key %>:
+<%- transform(value, indent + '  ') %>
+<% } else { %>
+<%= indent %><%= key %>: <%- `${value}` %>
+<% } %>
+<% } %>
+<% } %>
+<% } %>
+
+
+contact:
+  <%- transform(user, '  ') %>
+  other_key: other_value

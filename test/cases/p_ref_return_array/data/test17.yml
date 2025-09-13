@@ -1,0 +1,10 @@
+person:
+  name: "John Doe"
+  age: 30
+  hobbies:
+    - swimming
+    - hiking
+
+people:
+  $p_ref:
+    $ref: "test17_included_yaml.yml#/people"
