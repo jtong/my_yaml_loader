@@ -1,6 +1,6 @@
 {
   "name": "@jtong/my-yaml-loader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "yaml load dsl extension",
   "main": "index.js",
   "scripts": {

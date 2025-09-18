@@ -17,7 +17,7 @@ project:
 
 input:
   instruction: |
-    我希望 index.js导出的不是只有一个 loadYamlFile，还要有一个 loadYaml，它支持的是文本
+    我希望 index.js 提供的两个API都有一个Sync版，因为我有些场景需要Sync。但标记为deperacate，因为我未来准备放弃支持。
 output:     
   prompt:
     path: .ai_helper/prompt_builder/output/working

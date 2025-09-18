@@ -7,12 +7,15 @@
 
 // 导入核心异步功能
 const {
+    getValueByPointer,
+    processRef,
     loadYamlFile,
     loadYaml
 } = require('./core');
 
 // 导入已弃用的同步功能
 const {
+    processRefSync,
     loadYamlFileSync,
     loadYamlSync
 } = require('./sync');
@@ -37,4 +40,8 @@ module.exports = {
     loadYamlFileSync,
     loadYamlSync,
     
+    // 内部工具函数（供高级用户使用）
+    getValueByPointer,
+    processRef,
+    processRefSync
 };
