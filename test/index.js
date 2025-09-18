@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const { describe, it } = require('mocha');
 
 // 引入被测对象
-const loadYamlFile = require('../index.js');
+const loadYamlFile = require('../index.js').loadYamlFile;
 
 // 定义测试用例根目录
 const casesRootDir = path.join(__dirname, 'cases');

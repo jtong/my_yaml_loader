@@ -17,7 +17,7 @@ project:
 
 input:
   instruction: |
-    我希望 修改README.md加入$additional_items的内容
+    我希望 index.js导出的不是只有一个 loadYamlFile，还要有一个 loadYaml，它支持的是文本
 output:     
   prompt:
     path: .ai_helper/prompt_builder/output/working
