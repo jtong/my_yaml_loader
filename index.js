@@ -8,13 +8,15 @@
 // 导入核心异步功能
 const {
     loadYamlFile,
-    loadYaml
+    loadYaml,
+    processRef
 } = require('./core');
 
 // 导入已弃用的同步功能
 const {
     loadYamlFileSync,
-    loadYamlSync
+    loadYamlSync, 
+    processRefSync
 } = require('./sync');
 
 /**
@@ -32,9 +34,11 @@ module.exports = {
     // 主要异步API
     loadYamlFile,
     loadYaml,
-    
-    // 已弃用的同步API
+    processRef,
+
+    // 未来会弃用的同步API
     loadYamlFileSync,
     loadYamlSync,
+    processRefSync
     
 };
