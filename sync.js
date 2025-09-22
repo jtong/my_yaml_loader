@@ -153,7 +153,9 @@ function loadYamlSync(yamlContent, workdir = process.cwd(), context) {
 }
 
 module.exports = {
-    processRefSync,
+    processRefSync: function(obj, context, workdir){
+        return processRefSync(obj, context, workdir, loadYamlFileSync);
+    },
     loadYamlFileSync,
     loadYamlSync
 };

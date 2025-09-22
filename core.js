@@ -171,7 +171,9 @@ async function loadYaml(yamlContent, workdir = process.cwd(), context) {
 
 module.exports = {
     getValueByPointer,
-    processRef,
+    processRef: async function(obj, context, workdir){
+        return await processRef(obj, context, workdir, loadYamlFile);
+    },
     loadYamlFile,
     loadYaml
 };
